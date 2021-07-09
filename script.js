@@ -1,4 +1,4 @@
-//$(document).ready(function () {
+//window.addEventListener('DOMContentLoaded', function () {
 
 function getRandomIntBetween(min, max) {
   min = Math.ceil(min);
@@ -19,32 +19,38 @@ var getNewEquation = function () {
 
 getNewEquation();
 
-$('#user-input').on('keyup', function () {
-  if (Number($(this).val()) === firstRandomNumber + secondRandomNumber) {
-    console.log("yay");
-    ++seconds;
-  }
-});
-
-
-
 var timerSpan = document.body.querySelector("#timer");
 var seconds = 10;
 var timer = null;
 
 var startTimer = function () {
+  $('.gameInfo').text("GO, GO, GO!")
   if (!timer) {
     timer = setInterval(function () {
       timerSpan.innerHTML = --seconds;
+      CheckTimer();
     }, 1000);
+    $('.startTimer').hide(); 
   }
 };
 
-var restartTimer = function () {
-  window.clearInterval(timer);
-  seconds = 10;
-  timer = null;
-  timerSpan.innerHTML = seconds;
+$('#user-input').on('keyup', function () {
+  if (Number($(this).val()) === firstRandomNumber + secondRandomNumber) {
+    timerSpan.innerHTML = ++seconds;
+    $('#user-input').val("");
+    getNewEquation();
+  }
+});  
+
+var CheckTimer = function () {
+  if (Number(timerSpan.innerHTML) === 0) {
+    $('.gameInfo').text("Times up. press start to play again."); 
+    window.clearInterval(timer);
+    timer = null;
+    seconds = 10;
+    timerSpan.innerHTML = seconds;
+    $('#user-input').val("");
+    $('.startTimer').show();
+  }
 };
-  
 //});

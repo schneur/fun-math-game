@@ -12,12 +12,16 @@
   <body>
 
     <h2>The Ten Second Math Game</h2>
-    <h3 id="mathEquation"></h3>
-    <p><span id="timer">10</span> s</p>
-    <button onclick="startTimer()">Start</button>
-    <button onclick="restartTimer()">Stop</button>
     
-
+    <div>
+      <h3 id="mathEquation"></h3>
+      <h5 class="gameInfo"></h5>
+      <p><span id="timer">10</span><br>seconds</p>
+    </div>
+    
+    
+    <button class="startTimer" onclick="startTimer()">Start</button>
+    
     <form>
       <input type="number" id="user-input" name="userInput">
     </form>
