@@ -21,10 +21,32 @@
     
     
     <button class="startTimer" onclick="startTimer()">Start</button>
-    
+
+    <h5>choose math equaters</h5>
+    <br>
+    <div class="equations">
+      <input id="plus" name="plus" type="checkbox" checked/>
+      <label for="plus">Plus</label>
+    </div>
+    <div class="equations">
+      <input id="minus" name="minus" type="checkbox">
+      <label for="minus">Minus</label>
+    </div>
+    <div class="equations">
+      <input id="times" name="times" type="checkbox">
+      <label for="times">Times</label>
+    </div>
+    <div class="equations">
+      <input id="division" name="division" type="checkbox">
+      <label for="division">Division</label>
+    </div>
+
     <form>
       <input type="number" id="user-input" name="userInput">
     </form>
+
+    <h5 class="score">current score: </h5>
+    <h5 class="highScore">your high score: </h5>
  
     <script src="script.js"></script>
   </body>

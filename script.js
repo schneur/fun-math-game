@@ -1,20 +1,21 @@
-//window.addEventListener('DOMContentLoaded', function () {
-
 function getRandomIntBetween(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
+$('#user-input').hide();
 var mathEquation = document.body.querySelector("#mathEquation");
 var firstRandomNumber = 0;
 var secondRandomNumber = 0;
+var score = 0;
+var highScore = 0;
 
 
-var getNewEquation = function () {
+var getNewEquation = function (equation) {
   firstRandomNumber = getRandomIntBetween(1,9);
   secondRandomNumber = getRandomIntBetween(1,9);
-  mathEquation.innerHTML = firstRandomNumber + " + " + secondRandomNumber;
+  mathEquation.innerHTML = firstRandomNumber + '+' + secondRandomNumber;
 };
 
 getNewEquation();
@@ -24,7 +25,9 @@ var seconds = 10;
 var timer = null;
 
 var startTimer = function () {
-  $('.gameInfo').text("GO, GO, GO!")
+  $('.gameInfo').text("GO, GO, GO!");
+  $('#user-input').show();
+  score = 0;
   if (!timer) {
     timer = setInterval(function () {
       timerSpan.innerHTML = --seconds;
@@ -37,6 +40,8 @@ var startTimer = function () {
 $('#user-input').on('keyup', function () {
   if (Number($(this).val()) === firstRandomNumber + secondRandomNumber) {
     timerSpan.innerHTML = ++seconds;
+    score += 1;
+    $('.score').text("score: " + score);
     $('#user-input').val("");
     getNewEquation();
   }
@@ -49,8 +54,16 @@ var CheckTimer = function () {
     timer = null;
     seconds = 10;
     timerSpan.innerHTML = seconds;
+    $('#user-input').hide();
+    updateHighScore();
     $('#user-input').val("");
     $('.startTimer').show();
   }
 };
-//});
+
+ var updateHighScore = function () {
+   if (score > highScore) {
+     highScore = score;
+     $('.highScore').text("your high score: " + highScore);
+   };
+ };
