@@ -40,15 +40,22 @@ var swapNumbers = function () {
   }
 };
 
-var getNewEquation = function () {
+var getNewEquation = function (max) {
   randomOperater();
-  firstRandomNumber = getRandomIntBetween(1,9);
-  secondRandomNumber = getRandomIntBetween(1,9);
+  firstRandomNumber = getRandomIntBetween(1,max);
+  secondRandomNumber = getRandomIntBetween(1,max);
   swapNumbers();
   mathEquation.innerHTML = firstRandomNumber + " " + currentOperater + " " + secondRandomNumber;
 };
 
-getNewEquation();
+var usersRange = 10;
+
+$('#vol').on('click', function () {
+  usersRange = $("#vol").val();
+  $('.usersRange').text(usersRange);
+});
+
+getNewEquation(usersRange);
 
 var timerSpan = document.body.querySelector("#timer");
 var seconds = 10;
@@ -101,7 +108,7 @@ var correctAnswer = function () {
   score += 1;
   $('.score').text("score: " + score);
   $('#user-input').val("");
-  getNewEquation();
+  getNewEquation(usersRange);
 }
 
 var CheckTimer = function () {
@@ -113,7 +120,7 @@ var CheckTimer = function () {
     timerSpan.innerHTML = seconds;
     $('#user-input').hide();
     updateHighScore();
-    getNewEquation();
+    getNewEquation(usersRange);
     $('#user-input').val("");
     $('.startTimer').show();
   }
