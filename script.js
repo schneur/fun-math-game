@@ -26,14 +26,26 @@ var firstRandomNumber = 0;
 var secondRandomNumber = 0;
 var score = 0;
 var highScore = 0;
+var add = /\+/;
+var subtract = /\-/;
+
+var swapNumbers = function () {
+  if (subtract.test(currentOperater)) {
+    if (firstRandomNumber < secondRandomNumber ) {
+      var a = firstRandomNumber;
+      var b = secondRandomNumber;
+      firstRandomNumber = b;
+      secondRandomNumber = a;
+    }
+  }
+};
 
 var getNewEquation = function () {
   randomOperater();
-  
   firstRandomNumber = getRandomIntBetween(1,9);
   secondRandomNumber = getRandomIntBetween(1,9);
+  swapNumbers();
   mathEquation.innerHTML = firstRandomNumber + " " + currentOperater + " " + secondRandomNumber;
-
 };
 
 getNewEquation();
@@ -55,23 +67,16 @@ var startTimer = function () {
   }
 };
 
-var add = /\+/;
-var subtract = /\-/;
-var times = /\x/;
-
 $('#user-input').on('keyup', function () {
   if (add.test(currentOperater)) {
     console.log('kkk')
     plus(); 
 } else if (subtract.test(currentOperater)) {
   minus();
-} else if (times.test(currentOperater)) {
-  times();
 } else {
-  division();
+  times();
 }
 });  
-
 
 var plus = function () {
   if (Number($('#user-input').val()) === firstRandomNumber + secondRandomNumber) {
@@ -87,12 +92,6 @@ var minus = function () {
 
 var times = function () {
   if (Number($('#user-input').val()) === firstRandomNumber * secondRandomNumber) {
-    correctAnswer();
-  }
-};
-
-var division = function () {
-  if (Number($('#user-input').val()) === firstRandomNumber / secondRandomNumber) {
     correctAnswer();
   }
 };
