@@ -4,6 +4,22 @@ function getRandomIntBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+var usersOperaters = ['+'];
+var currentOperater = [];
+
+$('.equations').on('click', function () {
+  usersOperaters = [];
+  $(".equations").each( function( index, element ){
+    if ($(element).is(':checked')) {
+    usersOperaters.push(($(this).val()))
+    }
+  });
+});
+
+var randomOperater = function () {
+  currentOperater = usersOperaters[Math.floor(Math.random() * usersOperaters.length)];
+};
+
 $('#user-input').hide();
 var mathEquation = document.body.querySelector("#mathEquation");
 var firstRandomNumber = 0;
@@ -11,11 +27,13 @@ var secondRandomNumber = 0;
 var score = 0;
 var highScore = 0;
 
-
-var getNewEquation = function (equation) {
+var getNewEquation = function () {
+  randomOperater();
+  
   firstRandomNumber = getRandomIntBetween(1,9);
   secondRandomNumber = getRandomIntBetween(1,9);
-  mathEquation.innerHTML = firstRandomNumber + '+' + secondRandomNumber;
+  mathEquation.innerHTML = firstRandomNumber + " " + currentOperater + " " + secondRandomNumber;
+
 };
 
 getNewEquation();
@@ -37,15 +55,55 @@ var startTimer = function () {
   }
 };
 
+var add = /\+/;
+var subtract = /\-/;
+var times = /\x/;
+
 $('#user-input').on('keyup', function () {
-  if (Number($(this).val()) === firstRandomNumber + secondRandomNumber) {
-    timerSpan.innerHTML = ++seconds;
-    score += 1;
-    $('.score').text("score: " + score);
-    $('#user-input').val("");
-    getNewEquation();
-  }
+  if (add.test(currentOperater)) {
+    console.log('kkk')
+    plus(); 
+} else if (subtract.test(currentOperater)) {
+  minus();
+} else if (times.test(currentOperater)) {
+  times();
+} else {
+  division();
+}
 });  
+
+
+var plus = function () {
+  if (Number($('#user-input').val()) === firstRandomNumber + secondRandomNumber) {
+    correctAnswer();
+  }
+};
+
+var minus = function () {
+  if (Number($('#user-input').val()) === firstRandomNumber - secondRandomNumber) {
+    correctAnswer();
+  }
+};
+
+var times = function () {
+  if (Number($('#user-input').val()) === firstRandomNumber * secondRandomNumber) {
+    correctAnswer();
+  }
+};
+
+var division = function () {
+  if (Number($('#user-input').val()) === firstRandomNumber / secondRandomNumber) {
+    correctAnswer();
+  }
+};
+
+var correctAnswer = function () {
+  timerSpan.innerHTML = ++seconds;
+  score += 1;
+  $('.score').text("score: " + score);
+  $('#user-input').val("");
+  getNewEquation();
+}
 
 var CheckTimer = function () {
   if (Number(timerSpan.innerHTML) === 0) {
@@ -56,6 +114,7 @@ var CheckTimer = function () {
     timerSpan.innerHTML = seconds;
     $('#user-input').hide();
     updateHighScore();
+    getNewEquation();
     $('#user-input').val("");
     $('.startTimer').show();
   }
@@ -66,4 +125,4 @@ var CheckTimer = function () {
      highScore = score;
      $('.highScore').text("your high score: " + highScore);
    };
- };
+  }
