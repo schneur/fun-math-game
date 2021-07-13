@@ -1,3 +1,10 @@
+img {
+  position: absolute;
+  opacity: 0.1;
+  z-index: -1;
+}
+
 .equations {
   display: inline-block;
 }
+

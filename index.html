@@ -10,42 +10,60 @@
     <title>Fun Math Game</title>
   </head>
   <body>
+    <img src="./images/harley-davidson-wdc9ZAiwBB4-unsplash.jpg" class="img-fluid px-auto" alt="responsive image">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xs-auto text-center pt-4 mt-3">
+          <h2>The Ten Second Math Game</h2>
+          <h3 class="mt-3 py-4" id="mathEquation"></h3>
+          <h5 class="gameInfo"></h5>
+          <p><span id="timer">10</span><br>seconds</p>
+        </div>
+      </div>
 
-    <h2>The Ten Second Math Game</h2>
+      <div class="row justify-content-center my-3">
+        <div class="col-xs-auto text-center">
+
+          <button class="startTimer btn btn-success my-3" onclick="startTimer()">Start</button>
+
+          <form>
+            <input class="rounded border-primary bg-light" type="number" id="user-input" name="userInput">
+          </form>
+
+        </div>
+      </div>
+      <div class="row justify-content-center my-3">
+        <div class="col-xs-auto text-center">
+          
+          <h5 class="mt-3">choose math equations</h5>
+          <input id="plus" name="plus" class="equations ml-3" value="+" type="checkbox" checked/>
+          <label for="plus">+</label>
+
+          <input id="minus" name="minus" class="equations ml-3" value="-" type="checkbox">
+          <label for="minus">-</label>
+
+         <input id="times" name="times" class="equations ml-3" value="x" type="checkbox">
+         <label for="times">x</label>
+
+         <form>
+          <label for="vol">Choose range of numbers</label>
+          <br>
+          <input type="range" id="vol" name="vol" min="5" step="5" max="50" value="10">
+          <p class="usersRange">10</p>
+         </form>
+        </div>  
+      </div>
+      <div class="text-center">
+        <h5 class="score">current score: </h5>
+        <h5 class="highScore">your high score: </h5>
+      </div>
     
-    <div>
-      <h3 id="mathEquation"></h3>
-      <h5 class="gameInfo"></h5>
-      <p><span id="timer">10</span><br>seconds</p>
+
+
+
+    
     </div>
     
-    
-    <button class="startTimer" onclick="startTimer()">Start</button>
-
-    <h5>choose math equaters</h5>
-    <br>
-    <input id="plus" name="plus" class="equations" value="+" type="checkbox" checked/>
-    <label for="plus">Plus</label>
-
-    <input id="minus" name="minus" class="equations" value="-" type="checkbox">
-    <label for="minus">Minus</label>
-
-    <input id="times" name="times" class="equations" value="x" type="checkbox">
-    <label for="times">Times</label>
-    
-    <form>
-      <label for="vol">Choose range of numbers</label>
-      <br>
-      <input type="range" id="vol" name="vol" min="5" step="5" max="50" value="10">
-      <p class="usersRange">10</p>
-    </form>
-
-    <form>
-      <input type="number" id="user-input" name="userInput">
-    </form>
-
-    <h5 class="score">current score: </h5>
-    <h5 class="highScore">your high score: </h5>
  
     <script src="script.js"></script>
   </body>
