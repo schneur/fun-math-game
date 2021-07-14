@@ -26,7 +26,7 @@ var firstRandomNumber = 0;
 var secondRandomNumber = 0;
 var score = 0;
 var highScore = 0;
-var add = /\+/;
+var addition = /\+/;
 var subtract = /\-/;
 
 var swapNumbers = function () {
@@ -75,7 +75,7 @@ var startTimer = function () {
 };
 
 $('#user-input').on('keyup', function () {
-  if (add.test(currentOperater)) {
+  if (addition.test(currentOperater)) {
     console.log('kkk')
     plus(); 
 } else if (subtract.test(currentOperater)) {

@@ -4,7 +4,20 @@ img {
   z-index: -1;
 }
 
+h2 {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h5 {
+  font-family: cursive;
+  color: darkslategrey;
+}
+
+#timer {
+  font-size: 20px;
+  color: darkred;
+}
+
 .equations {
   display: inline-block;
 }
-
